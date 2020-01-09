@@ -46,7 +46,6 @@ WIN_COMBINATIONS = [
   end 
   
   def play 
-    @board = Array.new(9, " ")
     turn until over? 
     if won?
       puts "Congratulations #{winner}!"
