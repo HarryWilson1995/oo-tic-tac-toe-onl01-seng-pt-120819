@@ -43,29 +43,32 @@ WIN_COMBINATIONS = [
     index.between?(0,8) && !position_taken?(index)
   end 
   
-  def play 
+    def play
     @board = Array.new(9, " ")
-    turn until over? 
-    if won?
-      puts "Congratulations #{winner}!"
-    else
-      puts "Cat's Game!"
-    end 
- 
-  end 
-  
-  def turn 
-    puts "Player #{current_player}, please input a number 1-9: "
-    input = gets.strip 
+    # Play until someone wins or there is a draw
+    turn until over?
+    # Congratulate the winner
+    won? ? puts("Congratulations #{winner}!") : puts("Cat's Game!")
+    # Ask if they'd like to play again
+    puts "Would you like to play again? (Y or N)"
+    # If yes, then #play again
+    gets.strip.downcase == "y" || gets.strip.downcase == "yes" ? play : puts("Goodbye!")
+  end
+
+  # #turn gets the player's move, checks that the move is valid, then updates the board with the new move and finally displays the board.
+  # Called by #play
+  def turn
+    puts "Player #{current_player}, please enter a number 1-9:"
+    input = gets.strip
     index = input_to_index(input)
     cp = current_player
     if valid_move?(index)
       move(index, cp)
       display_board
-    else 
-      turn 
-    end 
-  end 
+    else
+      turn
+    end
+  end
   
   def turn_count
     @board.count{|token| token == "X" || token == "O"}
