@@ -73,6 +73,7 @@ WIN_COMBINATIONS = [
   end 
   
   def current_player
+    current_player = "X"
     turn_count % 2 == 0 ? "X" : "O"
   end 
   
