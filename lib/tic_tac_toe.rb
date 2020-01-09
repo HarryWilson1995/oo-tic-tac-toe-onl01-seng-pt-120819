@@ -49,7 +49,6 @@ WIN_COMBINATIONS = [
     @board = Array.new(9, " ")
     turn until over? 
     if won?
-      binding.pry 
       puts "Congratulations #{winner}!"
     else
       puts "Cat's Game!"
